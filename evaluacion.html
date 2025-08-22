@@ -2,7 +2,6 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Evaluación</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -10,6 +9,7 @@
   <main class="evaluacion">
     <h1>📝 Evaluación de Bienestar Laboral</h1>
 
+    <!-- Preguntas -->
     <div class="pregunta" id="pregunta-0">
       <p>1. ¿Qué es el bienestar laboral?</p>
       <label><input type="radio" name="q0" value="a"> Un beneficio económico</label><br>
@@ -24,18 +24,17 @@
       <label><input type="radio" name="q1" value="c"> Aumentar la carga laboral</label>
     </div>
 
-    <div class="pregunta" id="pregunta-2" style="display:none;">
-      <p>3. ¿Qué herramienta ayuda a medir el bienestar laboral?</p>
-      <label><input type="radio" name="q2" value="a"> Encuestas de clima</label><br>
-      <label><input type="radio" name="q2" value="b"> Reloj de asistencia</label><br>
-      <label><input type="radio" name="q2" value="c"> Manual de funciones</label>
-    </div>
+    <!-- Puedes agregar más preguntas siguiendo el mismo patrón -->
 
+    <!-- Navegación -->
     <div class="navegacion">
       <button id="atras">⬅ Atrás</button>
       <button id="siguiente">Siguiente ➡</button>
       <button id="enviar" style="display:none;">✅ Enviar</button>
     </div>
+
+    <!-- Resultado -->
+    <div id="resultado" style="margin-top: 20px;"></div>
   </main>
 
   <script src="js/evaluacion.js"></script>
