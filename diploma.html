@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Diploma</title>
+</head>
+<body>
+  <h1>🎓 Diploma de Aprobación</h1>
+  <p>Felicitaciones, has aprobado el curso.</p>
+  <p>Ingresa tu nombre para generar el diploma:</p>
+  <input type="text" id="nombre">
+  <button onclick="generarDiploma()">Generar</button>
+
+  <div id="diploma"></div>
+
+  <script>
+    function generarDiploma() {
+      const nombre = document.getElementById("nombre").value;
+      const fecha = new Date().toLocaleDateString();
+      document.getElementById("diploma").innerHTML = `
+        <h2>Diploma</h2>
+        <p>Otorgado a <strong>${nombre}</strong></p>
+        <p>Por haber aprobado el curso de Bienestar Laboral</p>
+        <p>Fecha: ${fecha}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
