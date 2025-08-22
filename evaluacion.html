@@ -1,76 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Evaluación</title>
-  <script src="js/evaluacion.js"></script>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Evaluación del Curso</h1>
-  <form id="quizForm">
-    <!-- Pregunta 1 -->
-    <p>1. ¿que hacer en caso de robo o asalto?</p>
-    <input type="radio" name="q1" value="a"> A. salir corriendo<br>
-    <input type="radio" name="q1" value="b"> B. mantener la calma<br>
-    <input type="radio" name="q1" value="c"> C. Obedecer las instrucciones o mandatos de los asaltantes, manteniendo la calma en todo momento<br>
+  <main class="evaluacion">
+    <h1>📝 Evaluación de Bienestar Laboral</h1>
 
-    <!-- Pregunta 2 -->
-    <p>2. Un asalto o robo es...</p>
-    <input type="radio" name="q1" value="a"> A. un juego<br>
-    <input type="radio" name="q1" value="b"> B. todo intento de entrar impetuosamente a una instalación y quitar bienes a las personas qe las poseen, en los cuales frecuentemente existe agresión física y verbal.<br>
-    <input type="radio" name="q1" value="c"> C. un baile<br>
+    <div class="pregunta" id="pregunta-0">
+      <p>1. ¿Qué es el bienestar laboral?</p>
+      <label><input type="radio" name="q0" value="a"> Un beneficio económico</label><br>
+      <label><input type="radio" name="q0" value="b"> Un estado de satisfacción y salud en el trabajo</label><br>
+      <label><input type="radio" name="q0" value="c"> Un tipo de contrato</label>
+    </div>
 
-     <!-- Pregunta 3 -->
-    <p>3. Un asalto o robo es...</p>
-    <input type="radio" name="q1" value="a"> A. un juego<br>
-    <input type="radio" name="q1" value="b"> B. todo intento de entrar impetuosamente a una instalación y quitar bienes a las personas qe las poseen, en los cuales frecuentemente existe agresión física y verbal.<br>
-    <input type="radio" name="q1" value="c"> C. un baile<br>
+    <div class="pregunta" id="pregunta-1" style="display:none;">
+      <p>2. ¿Cuál de estas prácticas mejora el clima organizacional?</p>
+      <label><input type="radio" name="q1" value="a"> Ignorar conflictos</label><br>
+      <label><input type="radio" name="q1" value="b"> Comunicación abierta y escucha activa</label><br>
+      <label><input type="radio" name="q1" value="c"> Aumentar la carga laboral</label>
+    </div>
 
-     <!-- Pregunta 4 -->
-    <p>4. Un asalto o robo es...</p>
-    <input type="radio" name="q1" value="a"> A. un juego<br>
-    <input type="radio" name="q1" value="b"> B. todo intento de entrar impetuosamente a una instalación y quitar bienes a las personas qe las poseen, en los cuales frecuentemente existe agresión física y verbal.<br>
-    <input type="radio" name="q1" value="c"> C. un baile<br>
+    <div class="pregunta" id="pregunta-2" style="display:none;">
+      <p>3. ¿Qué herramienta ayuda a medir el bienestar laboral?</p>
+      <label><input type="radio" name="q2" value="a"> Encuestas de clima</label><br>
+      <label><input type="radio" name="q2" value="b"> Reloj de asistencia</label><br>
+      <label><input type="radio" name="q2" value="c"> Manual de funciones</label>
+    </div>
 
-    <!-- Pregunta 5 -->
-    <p>5. Un asalto o robo es...</p>
-    <input type="radio" name="q1" value="a"> A. un juego<br>
-    <input type="radio" name="q1" value="b"> B. todo intento de entrar impetuosamente a una instalación y quitar bienes a las personas qe las poseen, en los cuales frecuentemente existe agresión física y verbal.<br>
-    <input type="radio" name="q1" value="c"> C. un baile<br>
+    <div class="navegacion">
+      <button id="atras">⬅ Atrás</button>
+      <button id="siguiente">Siguiente ➡</button>
+      <button id="enviar" style="display:none;">✅ Enviar</button>
+    </div>
+  </main>
 
-    <!-- Pregunta 6 -->
-    <p>6. Un asalto o robo es...</p>
-    <input type="radio" name="q1" value="a"> A. un juego<br>
-    <input type="radio" name="q1" value="b"> B. todo intento de entrar impetuosamente a una instalación y quitar bienes a las personas qe las poseen, en los cuales frecuentemente existe agresión física y verbal.<br>
-    <input type="radio" name="q1" value="c"> C. un baile<br>
-
-    <!-- Pregunta 7 -->
-    <p>7. Un asalto o robo es...</p>
-    <input type="radio" name="q1" value="a"> A. un juego<br>
-    <input type="radio" name="q1" value="b"> B. todo intento de entrar impetuosamente a una instalación y quitar bienes a las personas qe las poseen, en los cuales frecuentemente existe agresión física y verbal.<br>
-    <input type="radio" name="q1" value="c"> C. un baile<br>
-
-    <!-- Pregunta 8 -->
-    <p>8. Un asalto o robo es...</p>
-    <input type="radio" name="q1" value="a"> A. un juego<br>
-    <input type="radio" name="q1" value="b"> B. todo intento de entrar impetuosamente a una instalación y quitar bienes a las personas qe las poseen, en los cuales frecuentemente existe agresión física y verbal.<br>
-    <input type="radio" name="q1" value="c"> C. un baile<br>
-
-    <!-- Pregunta 9 -->
-    <p>9. Un asalto o robo es...</p>
-    <input type="radio" name="q1" value="a"> A. un juego<br>
-    <input type="radio" name="q1" value="b"> B. todo intento de entrar impetuosamente a una instalación y quitar bienes a las personas qe las poseen, en los cuales frecuentemente existe agresión física y verbal.<br>
-    <input type="radio" name="q1" value="c"> C. un baile<br>
-
-    <!-- Pregunta 10 -->
-    <p>10. Un asalto o robo es...</p>
-    <input type="radio" name="q1" value="a"> A. un juego<br>
-    <input type="radio" name="q1" value="b"> B. todo intento de entrar impetuosamente a una instalación y quitar bienes a las personas qe las poseen, en los cuales frecuentemente existe agresión física y verbal.<br>
-    <input type="radio" name="q1" value="c"> C. un baile<br>
-
-    <!-- Repite hasta la pregunta 10 -->
-
-    <br><button type="button" onclick="validarEvaluacion()">Enviar</button>
-  </form>
-  <div id="resultado"></div>
+  <script src="js/evaluacion.js"></script>
 </body>
 </html>
