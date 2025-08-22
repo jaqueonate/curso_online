@@ -1,64 +1,41 @@
-document.addEventListener('DOMContentLoaded', () => {
-  let preguntaActual = 0;
-  const preguntas = document.querySelectorAll('.pregunta');
-  const btnAtras = document.getElementById('atras');
-  const btnSiguiente = document.getElementById('siguiente');
-  const btnEnviar = document.getElementById('enviar');
-  const resultado = document.getElementById('resultado');
+// Función para generar el diploma con nombre y fecha
+function generarDiploma() {
+  const nombre = document.getElementById("nombreInput").value.trim();
 
-  const respuestasCorrectas = {
-    q0: "b",
-    q1: "b"
-    // Agrega más claves si tienes más preguntas
-  };
-
-  function mostrarPregunta(index) {
-    preguntas.forEach((p, i) => {
-      p.style.display = i === index ? 'block' : 'none';
-    });
-
-    btnAtras.style.display = index === 0 ? 'none' : 'inline-block';
-    btnSiguiente.style.display = index === preguntas.length - 1 ? 'none' : 'inline-block';
-    btnEnviar.style.display = index === preguntas.length - 1 ? 'inline-block' : 'none';
+  if (!nombre) {
+    alert("Por favor, ingresa tu nombre.");
+    return;
   }
 
-  btnAtras.addEventListener('click', () => {
-    if (preguntaActual > 0) {
-      preguntaActual--;
-      mostrarPregunta(preguntaActual);
-    }
-  });
+  // Formatear la fecha actual en español
+  const hoy = new Date();
+  const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+  const fechaFormateada = hoy.toLocaleDateString('es-CL', opciones);
 
-  btnSiguiente.addEventListener('click', () => {
-    if (preguntaActual < preguntas.length - 1) {
-      preguntaActual++;
-      mostrarPregunta(preguntaActual);
-    }
-  });
+  // Insertar nombre y fecha en el diploma
+  document.getElementById("nombreDiploma").textContent = nombre;
+  document.getElementById("fechaDiploma").textContent = "Fecha: " + fechaFormateada;
 
-  btnEnviar.addEventListener('click', () => {
-    let aciertos = 0;
-    for (let clave in respuestasCorrectas) {
-      const seleccionada = document.querySelector(`input[name="${clave}"]:checked`);
-      if (seleccionada && seleccionada.value === respuestasCorrectas[clave]) {
-        aciertos++;
-      }
-    }
+  // Mostrar el diploma
+  document.getElementById("diploma").style.display = "block";
+}
 
-    const total = Object.keys(respuestasCorrectas).length;
-    const porcentaje = (aciertos / total) * 100;
+// Función para descargar el diploma como PDF
+function descargarPDF() {
+  const elemento = document.getElementById("diploma");
 
-    if (porcentaje >= 90) {
-      resultado.innerHTML = `
-        <p>✅ ¡Aprobaste con ${porcentaje.toFixed(0)}%!</p>
-        <a href="diploma.html">🎓 Generar diploma</a>
-      `;
-    } else {
-      resultado.innerHTML = `
-        <p>❌ Obtuviste ${porcentaje.toFixed(0)}%. Debes alcanzar al menos 90% para aprobar.</p>
-      `;
-    }
-  });
+  // Configuración del PDF
+  const opciones = {
+    margin: 0,
+    filename: 'Diploma_' + document.getElementById("nombreDiploma").textContent + '.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+  };
+
+  // Generar y guardar el PDF
+  html2pdf().set(opciones).from(elemento).save();
+}
 
   mostrarPregunta(preguntaActual);
 });
