@@ -48,13 +48,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (porcentaje >= 70) {
       resultado.innerHTML += `<p>🎉 ¡Felicitaciones! Has aprobado la evaluación.</p>`;
-      mostrarDiploma(porcentaje);
+      generarDiploma(porcentaje);
     } else {
-      resultado.innerHTML += `<p>💡 No alcanzaste el mínimo para aprobar. Puedes revisar el material y volver a intentarlo.</p>`;
+      resultado.innerHTML += `<p>💡 Puedes revisar el material y volver a intentarlo.</p>`;
     }
   });
 
-  function mostrarDiploma(porcentaje) {
+  function generarDiploma(porcentaje) {
     const nombre = prompt("Ingresa tu nombre para generar el diploma:");
     if (!nombre) {
       alert("No se ingresó nombre. Diploma no generado.");
