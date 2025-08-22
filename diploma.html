@@ -1,43 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Diploma de Aprobación</title>
-  <link rel="stylesheet" href="diploma.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diploma Digital</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #f4f4f4;
+      text-align: center;
+      padding: 30px;
+    }
+    #diploma {
+      background: white;
+      border: 5px solid #2c3e50;
+      padding: 40px;
+      margin: auto;
+      width: 80%;
+      max-width: 800px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    h1 {
+      font-size: 2.5em;
+      color: #2c3e50;
+    }
+    .nombre {
+      font-size: 2em;
+      margin: 20px 0;
+      color: #34495e;
+    }
+    .fecha {
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #7f8c8d;
+    }
+    .acciones {
+      margin-top: 30px;
+    }
+    input {
+      padding: 10px;
+      font-size: 1em;
+      margin-bottom: 20px;
+      width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1em;
+      margin: 5px;
+      cursor: pointer;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    button:hover {
+      background-color: #34495e;
+    }
+  </style>
 </head>
 <body>
-  <div class="diploma-container">
-    <div class="banner">
-      <div class="medalla">🏅<br><span>BEST AWARD TITLE</span></div>
-    </div>
 
-    <div class="contenido">
-      <h1 class="titulo">Certificate</h1>
-      <h2 class="subtitulo">DE APROBACIÓN</h2>
-      <p class="presentado">Este certificado se otorga con orgullo a</p>
-      <h3 class="nombre" id="nombreDiploma">Jacqueline Soto</h3>
-      <p class="descripcion">Por haber aprobado el curso de Bienestar Laboral</p>
-      <div class="footer">
-        <p class="fecha" id="fechaDiploma">24 de agosto de 2025</p>
-        <div class="firma">____________________<br>Firma</div>
-      </div>
-    </div>
+  <h1>Generador de Diplomas</h1>
+  <input type="text" id="nombreInput" placeholder="Ingresa tu nombre" />
+  <div class="acciones">
+    <button onclick="generarDiploma()">🎓 Generar Diploma</button>
+  </div>
 
-    <div class="decoracion-lateral">
-      <div class="logo">Tu Logo</div>
-      <div class="estrellas">★ ★ ★ ★ ★</div>
+  <div id="diploma" style="display:none;">
+    <h1>Diploma de Reconocimiento</h1>
+    <div class="nombre" id="nombreDiploma"></div>
+    <p>Por su destacada participación y compromiso.</p>
+    <div class="fecha" id="fechaDiploma"></div>
+    <div class="acciones">
+      <button onclick="window.print()">🖨️ Imprimir</button>
+      <button onclick="descargarPDF()">📄 Descargar PDF</button>
     </div>
   </div>
 
-  <script>
-    // Si quieres que el nombre y fecha se generen dinámicamente:
-    const nombre = prompt("Ingresa tu nombre completo:");
-    if (nombre) document.getElementById("nombreDiploma").textContent = nombre;
+  <!-- Librería para generar PDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
-    const fecha = new Date().toLocaleDateString('es-CL', {
-      year: 'numeric', month: 'long', day: 'numeric'
-    });
-    document.getElementById("fechaDiploma").textContent = fecha;
+  <script>
+    function generarDiploma() {
+      const nombre = document.getElementById("nombreInput").value.trim();
+      if (!nombre) {
+        alert("Por favor, ingresa tu nombre.");
+        return;
+      }
+
+      const hoy = new Date();
+      const opciones = { year: 'numeric', month: 'long', day: 'numeric' };
+      const fechaFormateada = hoy.toLocaleDateString('es-CL', opciones);
+
+      document.getElementById("nombreDiploma").textContent = nombre;
+      document.getElementById("fechaDiploma").textContent = "Fecha: " + fechaFormateada;
+      document.getElementById("diploma").style.display = "block";
+    }
+
+    function descargarPDF() {
+      const elemento = document.getElementById("diploma");
+      const opciones = {
+        margin: 0,
+        filename: 'Diploma_' + document.getElementById("nombreDiploma").textContent + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
+      };
+      html2pdf().set(opciones).from(elemento).save();
+    }
   </script>
+
 </body>
 </html>
