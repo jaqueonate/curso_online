@@ -1,26 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
   <title>Diploma</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>🎓 Diploma de Aprobación</h1>
-  <p>Felicitaciones, has aprobado el curso.</p>
-  <p>Ingresa tu nombre para generar el diploma:</p>
-  <input type="text" id="nombre">
-  <button onclick="generarDiploma()">Generar</button>
+  <main class="evaluacion">
+    <h1>🎓 Diploma de Aprobación</h1>
+    <p>Felicitaciones, has aprobado la evaluación.</p>
 
-  <div id="diploma"></div>
+    <label for="nombre">Ingresa tu nombre completo:</label><br>
+    <input type="text" id="nombre" placeholder="Ej: Jacqueline Soto"><br><br>
+    <button onclick="generarDiploma()">Generar diploma</button>
+
+    <div id="diploma" style="margin-top: 30px;"></div>
+  </main>
 
   <script>
     function generarDiploma() {
-      const nombre = document.getElementById("nombre").value;
-      const fecha = new Date().toLocaleDateString();
+      const nombre = document.getElementById("nombre").value.trim();
+      if (!nombre) {
+        alert("Por favor, ingresa tu nombre.");
+        return;
+      }
+
+      const fecha = new Date().toLocaleDateString('es-CL', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
       document.getElementById("diploma").innerHTML = `
-        <h2>Diploma</h2>
-        <p>Otorgado a <strong>${nombre}</strong></p>
-        <p>Por haber aprobado el curso de Bienestar Laboral</p>
-        <p>Fecha: ${fecha}</p>
+        <div style="background-color: #f9f9f9; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.2); text-align: center;">
+          <h2>Diploma de Aprobación</h2>
+          <p>Otorgado a <strong>${nombre}</strong></p>
+          <p>Por haber aprobado el curso de Bienestar Laboral</p>
+          <p>Fecha: ${fecha}</p>
+          <p style="margin-top: 20px;">📩 contacto@tucurso.cl</p>
+        </div>
       `;
     }
   </script>
