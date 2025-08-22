@@ -1,33 +1,38 @@
-let preguntaActual = 0;
-const totalPreguntas = document.querySelectorAll('.pregunta').length;
+document.addEventListener('DOMContentLoaded', () => {
+  let preguntaActual = 0;
+  const preguntas = document.querySelectorAll('.pregunta');
+  const btnAtras = document.getElementById('atras');
+  const btnSiguiente = document.getElementById('siguiente');
+  const btnEnviar = document.getElementById('enviar');
 
-const mostrarPregunta = (index) => {
-  document.querySelectorAll('.pregunta').forEach((p, i) => {
-    p.style.display = i === index ? 'block' : 'none';
+  function mostrarPregunta(index) {
+    preguntas.forEach((p, i) => {
+      p.style.display = i === index ? 'block' : 'none';
+    });
+
+    btnAtras.style.display = index === 0 ? 'none' : 'inline-block';
+    btnSiguiente.style.display = index === preguntas.length - 1 ? 'none' : 'inline-block';
+    btnEnviar.style.display = index === preguntas.length - 1 ? 'inline-block' : 'none';
+  }
+
+  btnAtras.addEventListener('click', () => {
+    if (preguntaActual > 0) {
+      preguntaActual--;
+      mostrarPregunta(preguntaActual);
+    }
   });
 
-  document.getElementById('atras').style.display = index === 0 ? 'none' : 'inline-block';
-  document.getElementById('siguiente').style.display = index === totalPreguntas - 1 ? 'none' : 'inline-block';
-  document.getElementById('enviar').style.display = index === totalPreguntas - 1 ? 'inline-block' : 'none';
-};
+  btnSiguiente.addEventListener('click', () => {
+    if (preguntaActual < preguntas.length - 1) {
+      preguntaActual++;
+      mostrarPregunta(preguntaActual);
+    }
+  });
 
-document.getElementById('atras').addEventListener('click', () => {
-  if (preguntaActual > 0) {
-    preguntaActual--;
-    mostrarPregunta(preguntaActual);
-  }
+  btnEnviar.addEventListener('click', () => {
+    alert('✅ Evaluación completada. Gracias por participar.');
+    // Aquí puedes agregar lógica para generar diploma o guardar respuestas
+  });
+
+  mostrarPregunta(preguntaActual);
 });
-
-document.getElementById('siguiente').addEventListener('click', () => {
-  if (preguntaActual < totalPreguntas - 1) {
-    preguntaActual++;
-    mostrarPregunta(preguntaActual);
-  }
-});
-
-document.getElementById('enviar').addEventListener('click', () => {
-  alert('¡Gracias por completar la evaluación!');
-  // Aquí puedes agregar lógica para calcular resultados o generar diploma
-});
-
-mostrarPregunta(preguntaActual);
