@@ -4,6 +4,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnAtras = document.getElementById('atras');
   const btnSiguiente = document.getElementById('siguiente');
   const btnEnviar = document.getElementById('enviar');
+  const resultado = document.getElementById('resultado');
+
+  const respuestasCorrectas = {
+    q0: "b",
+    q1: "b"
+    // Agrega más claves si tienes más preguntas
+  };
 
   function mostrarPregunta(index) {
     preguntas.forEach((p, i) => {
@@ -30,8 +37,27 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   btnEnviar.addEventListener('click', () => {
-    alert('✅ Evaluación completada. Gracias por participar.');
-    // Aquí puedes agregar lógica para generar diploma o guardar respuestas
+    let aciertos = 0;
+    for (let clave in respuestasCorrectas) {
+      const seleccionada = document.querySelector(`input[name="${clave}"]:checked`);
+      if (seleccionada && seleccionada.value === respuestasCorrectas[clave]) {
+        aciertos++;
+      }
+    }
+
+    const total = Object.keys(respuestasCorrectas).length;
+    const porcentaje = (aciertos / total) * 100;
+
+    if (porcentaje >= 90) {
+      resultado.innerHTML = `
+        <p>✅ ¡Aprobaste con ${porcentaje.toFixed(0)}%!</p>
+        <a href="diploma.html">🎓 Generar diploma</a>
+      `;
+    } else {
+      resultado.innerHTML = `
+        <p>❌ Obtuviste ${porcentaje.toFixed(0)}%. Debes alcanzar al menos 90% para aprobar.</p>
+      `;
+    }
   });
 
   mostrarPregunta(preguntaActual);
