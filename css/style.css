@@ -139,3 +139,19 @@ button {
 button:hover {
   background-color: #0066cc;
 }
+
+.contenedor-principal {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.linea-azul {
+  margin-top: auto;
+  background-color: #004080;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 0.9em;
+}
