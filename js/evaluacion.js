@@ -1,7 +1,9 @@
 function validarEvaluacion() {
   const respuestasCorrectas = {
     q1: "b",
-    // Agrega las claves correctas para q2 a q10
+    q2: "b",
+    q3: "a",
+    // Agrega hasta q10
   };
 
   let aciertos = 0;
