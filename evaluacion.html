@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Evaluación</title>
+  <script src="js/evaluacion.js"></script>
+</head>
+<body>
+  <h1>Evaluación del Curso</h1>
+  <form id="quizForm">
+    <!-- Pregunta 1 -->
+    <p>1. ¿que hacer en caso de robo o asalto?</p>
+    <input type="radio" name="q1" value="a"> A. salir corriendo<br>
+    <input type="radio" name="q1" value="b"> B. mantener la calma<br>
+    <input type="radio" name="q1" value="c"> C. Obedecer las instrucciones o mandatos de los asaltantes, manteniendo la calma en todo momento<br>
+
+ <!-- Pregunta 2 -->
+    <p>2. Un asalto o robo es...</p>
+    <input type="radio" name="q1" value="a"> A. un juego<br>
+    <input type="radio" name="q1" value="b"> B. todo intento de entrar impetuosamente a una instalación y quitar bienes a las personas qe las poseen, en los cuales frecuentemente existe agresión física y verbal.<br>
+    <input type="radio" name="q1" value="c"> C. un baile<br>
+
+    <!-- Repite hasta la pregunta 10 -->
+
+    <br><button type="button" onclick="validarEvaluacion()">Enviar</button>
+  </form>
+  <div id="resultado"></div>
+</body>
+</html>
