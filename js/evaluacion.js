@@ -1,23 +1,33 @@
-function validarEvaluacion() {
-  const respuestasCorrectas = {
-    q1: "b",
-    q2: "b",
-    q3: "a",
-    // Agrega hasta q10
-  };
+let preguntaActual = 0;
+const totalPreguntas = document.querySelectorAll('.pregunta').length;
 
-  let aciertos = 0;
-  for (let pregunta in respuestasCorrectas) {
-    const seleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
-    if (seleccionada && seleccionada.value === respuestasCorrectas[pregunta]) {
-      aciertos++;
-    }
-  }
+const mostrarPregunta = (index) => {
+  document.querySelectorAll('.pregunta').forEach((p, i) => {
+    p.style.display = i === index ? 'block' : 'none';
+  });
 
-  const resultado = document.getElementById("resultado");
-  if (aciertos >= 9) {
-    resultado.innerHTML = `<p>✅ ¡Aprobado con ${aciertos}/10!</p><a href="diploma.html">Generar diploma</a>`;
-  } else {
-    resultado.innerHTML = `<p>❌ Reprobado con ${aciertos}/10. Debes obtener al menos 9 respuestas correctas.</p>`;
+  document.getElementById('atras').style.display = index === 0 ? 'none' : 'inline-block';
+  document.getElementById('siguiente').style.display = index === totalPreguntas - 1 ? 'none' : 'inline-block';
+  document.getElementById('enviar').style.display = index === totalPreguntas - 1 ? 'inline-block' : 'none';
+};
+
+document.getElementById('atras').addEventListener('click', () => {
+  if (preguntaActual > 0) {
+    preguntaActual--;
+    mostrarPregunta(preguntaActual);
   }
-}
+});
+
+document.getElementById('siguiente').addEventListener('click', () => {
+  if (preguntaActual < totalPreguntas - 1) {
+    preguntaActual++;
+    mostrarPregunta(preguntaActual);
+  }
+});
+
+document.getElementById('enviar').addEventListener('click', () => {
+  alert('¡Gracias por completar la evaluación!');
+  // Aquí puedes agregar lógica para calcular resultados o generar diploma
+});
+
+mostrarPregunta(preguntaActual);
