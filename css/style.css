@@ -1,48 +1,107 @@
+/* === Estilo general === */
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-image: url('../img/SSO.jpg'); /* Tu imagen de fondo */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   color: #333;
 }
 
-header {
-  background-color: #004080;
-  color: white;
-  padding: 20px;
-  text-align: center;
+/* === Capa de fondo para legibilidad === */
+main {
+  background-color: rgba(255, 255, 255, 0.92); /* Fondo blanco semitransparente */
+  padding: 40px;
+  max-width: 900px;
+  margin: 40px auto;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  border-radius: 10px;
 }
 
+/* === Encabezado === */
+header {
+  background-color: rgba(0, 64, 128, 0.85); /* Azul institucional semitransparente */
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.2em;
+}
+
+header p {
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+/* === Navegación === */
 nav {
-  background-color: #0066cc;
+  background-color: rgba(0, 102, 204, 0.9);
   display: flex;
   justify-content: center;
-  gap: 30px;
-  padding: 10px;
+  gap: 40px;
+  padding: 15px;
 }
 
 nav a {
   color: white;
   text-decoration: none;
   font-weight: bold;
+  font-size: 1em;
+  transition: all 0.3s ease;
 }
 
 nav a:hover {
   text-decoration: underline;
+  color: #ffdd57;
 }
 
-main {
-  padding: 40px;
-  max-width: 900px;
-  margin: auto;
-  background-color: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+/* === Contenido === */
+main h2 {
+  color: #004080;
+  margin-top: 0;
 }
 
+main ul {
+  padding-left: 20px;
+}
+
+main li {
+  margin-bottom: 10px;
+}
+
+/* === Pie de página === */
 footer {
-  background-color: #004080;
+  background-color: rgba(0, 64, 128, 0.85);
   color: white;
   text-align: center;
   padding: 20px;
+  font-size: 0.9em;
   margin-top: 40px;
+}
+
+/* === Adaptabilidad móvil === */
+@media screen and (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  main {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  header h1 {
+    font-size: 1.6em;
+  }
+
+  header p {
+    font-size: 1em;
+  }
 }
