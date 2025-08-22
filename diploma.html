@@ -29,6 +29,11 @@
       margin: 20px 0;
       color: #34495e;
     }
+    .porcentaje {
+      font-size: 1.5em;
+      color: #27ae60;
+      margin-top: 10px;
+    }
     .fecha {
       margin-top: 30px;
       font-size: 1.2em;
@@ -40,7 +45,7 @@
     input {
       padding: 10px;
       font-size: 1em;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       width: 300px;
     }
     button {
@@ -61,7 +66,8 @@
 <body>
 
   <h1>Generador de Diplomas</h1>
-  <input type="text" id="nombreInput" placeholder="Ingresa tu nombre" />
+  <input type="text" id="nombreInput" placeholder="Ingresa tu nombre" /><br/>
+  <input type="number" id="porcentajeInput" placeholder="Porcentaje de aprobación (%)" min="0" max="100" /><br/>
   <div class="acciones">
     <button onclick="generarDiploma()">🎓 Generar Diploma</button>
   </div>
@@ -70,6 +76,7 @@
     <h1>Diploma de Reconocimiento</h1>
     <div class="nombre" id="nombreDiploma"></div>
     <p>Por su destacada participación y compromiso.</p>
+    <div class="porcentaje" id="porcentajeDiploma"></div>
     <div class="fecha" id="fechaDiploma"></div>
     <div class="acciones">
       <button onclick="window.print()">🖨️ Imprimir</button>
@@ -77,14 +84,20 @@
     </div>
   </div>
 
-  <!-- Librería para generar PDF -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <script>
     function generarDiploma() {
       const nombre = document.getElementById("nombreInput").value.trim();
+      const porcentaje = document.getElementById("porcentajeInput").value.trim();
+
       if (!nombre) {
         alert("Por favor, ingresa tu nombre.");
+        return;
+      }
+
+      if (!porcentaje || isNaN(porcentaje) || porcentaje < 0 || porcentaje > 100) {
+        alert("Por favor, ingresa un porcentaje válido entre 0 y 100.");
         return;
       }
 
@@ -93,19 +106,23 @@
       const fechaFormateada = hoy.toLocaleDateString('es-CL', opciones);
 
       document.getElementById("nombreDiploma").textContent = nombre;
+      document.getElementById("porcentajeDiploma").textContent = "Aprobación: " + porcentaje + "%";
       document.getElementById("fechaDiploma").textContent = "Fecha: " + fechaFormateada;
       document.getElementById("diploma").style.display = "block";
     }
 
     function descargarPDF() {
       const elemento = document.getElementById("diploma");
+      const nombreArchivo = 'Diploma_' + document.getElementById("nombreDiploma").textContent + '.pdf';
+
       const opciones = {
         margin: 0,
-        filename: 'Diploma_' + document.getElementById("nombreDiploma").textContent + '.pdf',
+        filename: nombreArchivo,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { scale: 2 },
         jsPDF: { unit: 'mm', format: 'a4', orientation: 'landscape' }
       };
+
       html2pdf().set(opciones).from(elemento).save();
     }
   </script>
